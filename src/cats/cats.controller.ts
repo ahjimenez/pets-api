@@ -13,6 +13,11 @@ export class CatsController {
         return this.catsService.findAll();
     }
 
+    @Get(':id')
+    findOne(@Param('id') id: string): Cat { 
+        return this.catsService.findOne(+id);
+    }
+
     @Post()
     create(@Body() creatacatDto: CatDto) {
         return this.catsService.create(creatacatDto);

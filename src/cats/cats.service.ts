@@ -7,8 +7,7 @@ import { UpdateCatDto } from './types/cat.dto';
 
 @Injectable()
 export class CatsService {
-   
-    #cats: Cat[];
+#cats: Cat[];
 
 constructor() {
     this.#cats = [
@@ -24,6 +23,13 @@ findAll(): Cat[] {
     return this.#cats;
 }
 
+findOne(id: number): Cat {
+    const cat = this.#cats.find(cat => cat.id === id);
+    if (!cat) {
+        throw new Error(`Cat with id ${id} not found`);
+    }
+    return cat;
+}
 create(cat: CatDto) {
     const newCat = {
         id: this.#cats.length + 1,

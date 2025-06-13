@@ -23,6 +23,14 @@ findAll(): Dog[] {
     return this.#dogs;
 }
 
+findOne(id: number): Dog {
+    const dog = this.#dogs.find(dog => dog.id === id);
+    if (!dog) {
+        throw new Error(`Dog with id ${id} not found`);
+    }
+    return dog;
+}
+
 create(dog: DogDto) {
     const newDog = {
         id: this.#dogs.length + 1,

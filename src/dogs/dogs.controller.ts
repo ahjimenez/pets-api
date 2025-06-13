@@ -13,6 +13,11 @@ export class DogsController {
         return this.dogsService.findAll();
     }
 
+    @Get(':id')
+    findOne(@Param('id') id: string): Dog {
+        return this.dogsService.findOne(+id);
+    }
+    
     @Post()
     create(@Body() creatadogDto: DogDto) {
         return this.dogsService.create(creatadogDto);
